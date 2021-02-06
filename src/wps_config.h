@@ -10,7 +10,7 @@ extern "C"
 
     const uint32_t AUTO_WPS_TIMEOUT_MS = 120000;
 
-    esp_err_t auto_wps_start();
+    esp_err_t wps_config_start();
 
 #ifdef __cplusplus
 }

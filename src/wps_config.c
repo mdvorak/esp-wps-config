@@ -70,7 +70,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
     }
 }
 
-esp_err_t auto_wps_start()
+esp_err_t wps_config_start()
 {
     esp_err_t err;
 
