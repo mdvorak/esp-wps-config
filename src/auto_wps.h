@@ -8,9 +8,7 @@ extern "C"
 {
 #endif
 
-    const uint32_t AUTO_WPS_TIMEOUT = 2 * 60000; // 2min
-
-    esp_err_t auto_wps_start(uint32_t wps_timeout);
+    esp_err_t auto_wps_start(uint32_t wps_timeout_ms);
 
 #ifdef __cplusplus
 }
