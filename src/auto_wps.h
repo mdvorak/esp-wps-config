@@ -8,7 +8,7 @@ extern "C"
 {
 #endif
 
-    esp_err_t auto_wps_start(uint32_t wps_timeout_ms);
+    esp_err_t auto_wps_start();
 
 #ifdef __cplusplus
 }

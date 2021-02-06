@@ -70,7 +70,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
     }
 }
 
-esp_err_t auto_wps_start(uint32_t wps_timeout_ms)
+esp_err_t auto_wps_start()
 {
     esp_err_t err;
 
@@ -84,5 +84,5 @@ esp_err_t auto_wps_start(uint32_t wps_timeout_ms)
         return err;
 
     ESP_LOGI(TAG, "starting wps");
-    return esp_wifi_wps_start(wps_timeout_ms);
+    return esp_wifi_wps_start(0); // NOTE timeout is ignored as of IDF 4.2
 }
