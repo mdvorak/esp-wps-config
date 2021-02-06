@@ -2,7 +2,7 @@
 #include <esp_wifi.h>
 #include <esp_log.h>
 #include <nvs_flash.h>
-#include <auto_wps.h>
+#include <wps_config.h>
 
 static const char TAG[] = "example";
 
