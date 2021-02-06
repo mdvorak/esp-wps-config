@@ -32,7 +32,7 @@ void setup()
 	ESP_ERROR_CHECK(esp_wifi_start());
 
 	// Start WPS
-	// TODO
+	ESP_ERROR_CHECK(auto_wps_start(120000));
 
 	// Setup complete
 	ESP_LOGI(TAG, "started");

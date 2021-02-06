@@ -7,6 +7,13 @@
 
 static const char TAG[] = "auto_wps";
 
+static inline bool is_ssid_stored()
+{
+    wifi_config_t conf;
+    esp_err_t err = esp_wifi_get_config(WIFI_IF_STA, &conf);
+    return err == ESP_OK && conf.sta.ssid[0] != '\0';
+}
+
 static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     switch (event_id)
@@ -33,13 +40,32 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
         ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_connect());
         break;
     }
+
     case WIFI_EVENT_STA_WPS_ER_FAILED:
         ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_wps_disable());
-        ESP_LOGI(TAG, "wps failed");
+
+        if (is_ssid_stored())
+        {
+            ESP_LOGI(TAG, "wps failed, trying last known ssid");
+            ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_connect());
+        }
+        else
+        {
+            ESP_LOGI(TAG, "wps failed, no wifi configured, no network will be available");
+        }
         break;
+
     case WIFI_EVENT_STA_WPS_ER_TIMEOUT:
         ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_wps_disable());
-        ESP_LOGI(TAG, "wps timeout");
+        if (is_ssid_stored())
+        {
+            ESP_LOGI(TAG, "wps timeout, trying last known ssid");
+            ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_connect());
+        }
+        else
+        {
+            ESP_LOGI(TAG, "wps timeout, no wifi configured, no network will be available");
+        }
         break;
     }
 }
