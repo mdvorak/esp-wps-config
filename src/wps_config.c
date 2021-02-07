@@ -7,6 +7,10 @@
 
 static const char TAG[] = "auto_wps";
 
+ESP_EVENT_DEFINE_BASE(WPS_CONFIG);
+
+static bool initialized = false;
+
 static inline bool is_ssid_stored()
 {
     wifi_config_t conf;
@@ -74,15 +78,29 @@ esp_err_t wps_config_start()
 {
     esp_err_t err;
 
-    err = esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL);
-    if (err != ESP_OK)
-        return err;
+    // Support multiple calls
+    if (!initialized)
+    {
+        initialized = true;
 
-    esp_wps_config_t wps_config = WPS_CONFIG_INIT_DEFAULT(WPS_TYPE_PBC);
-    err = esp_wifi_wps_enable(&wps_config);
-    if (err != ESP_OK)
-        return err;
+        // Register handler
+        err = esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL);
+        if (err != ESP_OK)
+            return err;
 
+        // Config
+        esp_wps_config_t wps_config = WPS_CONFIG_INIT_DEFAULT(WPS_TYPE_PBC);
+        err = esp_wifi_wps_enable(&wps_config);
+        if (err != ESP_OK)
+            return err;
+    }
+
+    // Start
     ESP_LOGI(TAG, "starting wps");
-    return esp_wifi_wps_start(0); // NOTE timeout is ignored as of IDF 4.2
+    err = esp_wifi_wps_start(0); // NOTE timeout is ignored as of IDF 4.2
+    if (err != ESP_OK)
+        return err;
+
+    // Publish event
+    return esp_event_post(WPS_CONFIG, WPS_CONFIG_EVENT_START, NULL, 0, portMAX_DELAY);
 }
