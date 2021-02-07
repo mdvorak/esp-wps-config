@@ -97,10 +97,7 @@ esp_err_t wps_config_start()
 
     // Start
     ESP_LOGI(TAG, "starting wps");
-    err = esp_wifi_wps_start(0); // NOTE timeout is ignored as of IDF 4.2
-    if (err != ESP_OK)
-        return err;
+    ESP_ERROR_CHECK_WITHOUT_ABORT(esp_event_post(WPS_CONFIG, WPS_CONFIG_EVENT_START, NULL, 0, portMAX_DELAY));
 
-    // Publish event
-    return esp_event_post(WPS_CONFIG, WPS_CONFIG_EVENT_START, NULL, 0, portMAX_DELAY);
+    return esp_wifi_wps_start(0); // NOTE timeout is ignored as of IDF 4.2
 }
