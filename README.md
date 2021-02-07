@@ -1,4 +1,4 @@
-# esp-home-wifi
+# esp-wps-config
 
 ![platformio build](https://github.com/mdvorak-iot/esp-wps-config/workflows/platformio%20build/badge.svg)
 
