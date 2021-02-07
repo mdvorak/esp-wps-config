@@ -8,7 +8,7 @@ extern "C"
 {
 #endif
 
-    const uint32_t AUTO_WPS_TIMEOUT_MS = 120000;
+    const uint32_t WPS_CONFIG_TIMEOUT_MS = 120000;
 
     esp_err_t wps_config_start();
 
