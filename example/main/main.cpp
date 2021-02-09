@@ -6,7 +6,7 @@
 
 static const char TAG[] = "example";
 
-void setup()
+static void setup()
 {
 	esp_log_level_set("wifi", ESP_LOG_WARN);
 	esp_log_level_set("auto_wps", ESP_LOG_DEBUG);
@@ -43,16 +43,12 @@ void setup()
 	ESP_LOGI(TAG, "started");
 }
 
-void loop()
+static void run()
 {
-	vTaskDelay(1);
 }
 
-extern "C" _Noreturn void app_main()
+extern "C" void app_main()
 {
 	setup();
-	for (;;)
-	{
-		loop();
-	}
+	run();
 }
