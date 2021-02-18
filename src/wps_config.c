@@ -7,7 +7,7 @@
 
 static const char TAG[] = "auto_wps";
 
-ESP_EVENT_DEFINE_BASE(WPS_CONFIG);
+ESP_EVENT_DEFINE_BASE(WPS_CONFIG_EVENT);
 
 static bool initialized = false;
 
@@ -97,7 +97,7 @@ esp_err_t wps_config_start()
 
     // Start
     ESP_LOGI(TAG, "starting wps");
-    ESP_ERROR_CHECK_WITHOUT_ABORT(esp_event_post(WPS_CONFIG, WPS_CONFIG_EVENT_START, NULL, 0, portMAX_DELAY));
+    ESP_ERROR_CHECK_WITHOUT_ABORT(esp_event_post(WPS_CONFIG_EVENT, WPS_CONFIG_EVENT_START, NULL, 0, portMAX_DELAY));
 
     return esp_wifi_wps_start(0); // NOTE timeout is ignored as of IDF 4.2
 }

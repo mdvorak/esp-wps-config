@@ -11,7 +11,7 @@ extern "C"
 
     const uint32_t WPS_CONFIG_TIMEOUT_MS = 120000;
 
-    ESP_EVENT_DECLARE_BASE(WPS_CONFIG);
+    ESP_EVENT_DECLARE_BASE(WPS_CONFIG_EVENT);
 
     typedef enum
     {
