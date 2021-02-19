@@ -8,7 +8,7 @@ static const char TAG[] = "example";
 
 static void setup()
 {
-    esp_log_level_set("wifi", ESP_LOG_WARN);
+    esp_log_level_set("*", ESP_LOG_INFO);
     esp_log_level_set("auto_wps", ESP_LOG_DEBUG);
 
     // Initialize NVS
