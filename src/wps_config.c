@@ -1,9 +1,9 @@
 #include "wps_config.h"
-#include <string.h>
 #include <esp_log.h>
 #include <esp_wifi.h>
 #include <esp_wps.h>
 #include <freertos/event_groups.h>
+#include <string.h>
 
 static const char TAG[] = "auto_wps";
 
@@ -22,8 +22,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
 {
     switch (event_id)
     {
-    case WIFI_EVENT_STA_WPS_ER_SUCCESS:
-    {
+    case WIFI_EVENT_STA_WPS_ER_SUCCESS: {
         ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_wps_disable());
         ESP_LOGI(TAG, "wps succeeded, connecting to wifi");
 
