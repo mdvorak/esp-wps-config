@@ -24,7 +24,7 @@ static void setup()
     ESP_ERROR_CHECK(esp_event_loop_create_default());
 
     esp_event_handler_register(
-        WPS_CONFIG, WPS_CONFIG_EVENT_START, [](void *, esp_event_base_t, int32_t, void *) { ESP_LOGI(TAG, "wps started event"); }, NULL);
+        WPS_CONFIG_EVENT, WPS_CONFIG_EVENT_START, [](void *, esp_event_base_t, int32_t, void *) { ESP_LOGI(TAG, "wps started event"); }, NULL);
 
     // Initalize WiFi
     ESP_ERROR_CHECK(esp_netif_init());
