@@ -8,7 +8,10 @@
 extern "C" {
 #endif
 
-const uint32_t WPS_CONFIG_TIMEOUT_MS = 120000;
+/**
+ * WPS timeout, in milliseconds. This is hardcoded in the SDK.
+ */
+#define WPS_CONFIG_TIMEOUT_MS 120000
 
 ESP_EVENT_DECLARE_BASE(WPS_CONFIG_EVENT);
 
