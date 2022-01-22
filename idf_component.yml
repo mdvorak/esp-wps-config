@@ -1,8 +1,6 @@
 name: "wps_config"
-description: TODO description.
-url: https://github.com/mdvorak-iot/esp-wps-config.git
-targets:
-  - esp32
+description: Wrapper around WPS Wi-Fi configuration.
+url: https://github.com/mdvorak/esp-wps-config.git
 dependencies:
   idf:
     version: ">=4.1"

@@ -1,10 +1,10 @@
 {
-    "name": "esp-wps-config",
-    "description": "ESP32 WPS wrapper",
+    "name": "wps-config",
+    "description": "Wrapper around WPS Wi-Fi configuration.",
     "keywords": "esp esp32 wifi wps",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mdvorak-iot/esp-wps-config.git"
+        "url": "https://github.com/mdvorak/esp-wps-config.git"
     },
     "authors": [
         {

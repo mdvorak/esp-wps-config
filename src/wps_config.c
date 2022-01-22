@@ -5,7 +5,7 @@
 #include <freertos/event_groups.h>
 #include <string.h>
 
-static const char TAG[] = "auto_wps";
+static const char TAG[] = "wps_config";
 
 ESP_EVENT_DEFINE_BASE(WPS_CONFIG_EVENT);
 
@@ -69,6 +69,9 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
         {
             ESP_LOGI(TAG, "wps timeout, no wifi configured, no network will be available");
         }
+        break;
+
+    default:
         break;
     }
 }

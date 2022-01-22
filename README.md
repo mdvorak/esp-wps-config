@@ -1,17 +1,42 @@
-# esp-wps-config
+# wps_config
 
-![platformio build](https://github.com/mdvorak-iot/esp-wps-config/workflows/platformio%20build/badge.svg)
+[![build](https://github.com/mdvorak/esp-wps-config/actions/workflows/build.yml/badge.svg)](https://github.com/mdvorak/esp-wps-config/actions/workflows/build.yml)
 
-TODO
+Wrapper around WPS Wi-Fi configuration.
 
 ## Usage
 
-To reference this library, add following to the `platformio.ini` file as follows (replace with desired version):
+To reference this library by your project, add it as git submodule, using command
 
-```ini
-[env]
-lib_deps =
-    https://github.com/mdvorak-iot/esp-wps-config#v1.0.0
+```shell
+git submodule add https://github.com/mdvorak/esp-wps-config.git components/wps_config
 ```
 
-For code example, see [example/main.cpp](example/main.cpp)
+and include either of the header files
+
+```c
+#include <wps_config.h>
+```
+
+For full example, see [wps_config_example_main.c](./example/main/wps_config_example_main.c).
+
+## Development
+
+Prepare [ESP-IDF development environment](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#get-started-get-prerequisites)
+.
+
+Configure example application with
+
+```
+cd example/
+idf.py menuconfig
+```
+
+Flash it via (in the example dir)
+
+```
+idf.py build flash monitor
+```
+
+As an alternative, you can use [PlatformIO](https://docs.platformio.org/en/latest/core/installation.html) to build and
+flash the example project.
