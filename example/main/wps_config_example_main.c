@@ -6,10 +6,15 @@
 
 static const char TAG[] = "example";
 
+static void log_wps_start(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
+{
+    ESP_LOGI(TAG, "wps started event");
+}
+
 _Noreturn void app_main()
 {
     esp_log_level_set("*", ESP_LOG_INFO);
-    esp_log_level_set("auto_wps", ESP_LOG_DEBUG);
+    esp_log_level_set("wps_config", ESP_LOG_DEBUG);
 
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
@@ -24,9 +29,9 @@ _Noreturn void app_main()
     ESP_ERROR_CHECK(esp_event_loop_create_default());
 
     esp_event_handler_register(
-        WPS_CONFIG_EVENT, WPS_CONFIG_EVENT_START, [](void *, esp_event_base_t, int32_t, void *) { ESP_LOGI(TAG, "wps started event"); }, NULL);
+        WPS_CONFIG_EVENT, WPS_CONFIG_EVENT_START, log_wps_start, NULL);
 
-    // Initalize WiFi
+    // Initialize Wi-Fi
     ESP_ERROR_CHECK(esp_netif_init());
     esp_netif_t *sta_netif = esp_netif_create_default_wifi_sta();
     assert(sta_netif);
@@ -47,4 +52,3 @@ _Noreturn void app_main()
         vTaskDelay(1);
     }
 }
-
