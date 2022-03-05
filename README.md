@@ -1,6 +1,6 @@
 # wps_config
 
-[![build](https://github.com/mdvorak/esp-wps-config/actions/workflows/build.yml/badge.svg)](https://github.com/mdvorak/esp-wps-config/actions/workflows/build.yml)
+[![test](https://github.com/mdvorak/esp-wps-config/actions/workflows/test.yml/badge.svg)](https://github.com/mdvorak/esp-wps-config/actions/workflows/test.yml)
 
 Wrapper around WPS Wi-Fi configuration.
 
